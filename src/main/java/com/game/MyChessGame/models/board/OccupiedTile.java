@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class OccupiedTile extends Tile {
 
-    Piece pieceOnTile;
+    private Piece pieceOnTile;
 
     OccupiedTile(int tileCoordinate, Piece pieceOnTile) {
         super(tileCoordinate);
