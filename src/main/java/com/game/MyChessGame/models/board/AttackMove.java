@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class AttackMove extends Move{
 
-    Piece attackedPiece;
+    private Piece attackedPiece;
 
     public AttackMove(Board board, Piece movedPiece, int destinationCoordinate, Piece attackedPiece) {
         super(board, movedPiece, destinationCoordinate);

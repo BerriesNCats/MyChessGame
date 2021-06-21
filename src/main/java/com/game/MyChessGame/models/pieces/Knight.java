@@ -4,17 +4,19 @@ import com.game.MyChessGame.models.Alliance;
 import com.game.MyChessGame.models.board.*;
 import com.google.common.collect.ImmutableList;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 @Data
+@NoArgsConstructor
 public class Knight extends Piece{
 
     private final static int[] CANDIDATE_MOVE_COORDINATES = {-17, -15, -10, -6, 6, 10, 15, 17};
 
-    Knight(final int piecePosition, final Alliance pieceAlliance) {
+    public Knight(final int piecePosition, final Alliance pieceAlliance) {
         super(piecePosition, pieceAlliance);
     }
 
@@ -22,16 +24,15 @@ public class Knight extends Piece{
     public Collection<Move> calculateLegalMoves(Board board) {
         final List<Move> legalMoves = new ArrayList<>();
 
-        for (final int currentCandidateOffset : CANDIDATE_MOVE_COORDINATES) {
-            int candidateDestinationCoordinate = this.piecePosition + currentCandidateOffset;
+        for (final int currentCandidateDestinationOffset : CANDIDATE_MOVE_COORDINATES) {
+            int candidateDestinationCoordinate = this.piecePosition + currentCandidateDestinationOffset;
             if (BoardUtils.isValidTileCoordinate(candidateDestinationCoordinate)) {
-                if (isFirstColumnExclusion(this.piecePosition, currentCandidateOffset) ||
-                    isSecondColumnExclusion(this.piecePosition, currentCandidateOffset) ||
-                    isSeventhColumnExclusion(this.piecePosition, currentCandidateOffset) ||
-                    isEighthColumnExclusion(this.piecePosition, currentCandidateOffset)) {
+                if (isFirstColumnExclusion(this.piecePosition, currentCandidateDestinationOffset) ||
+                    isSecondColumnExclusion(this.piecePosition, currentCandidateDestinationOffset) ||
+                    isSeventhColumnExclusion(this.piecePosition, currentCandidateDestinationOffset) ||
+                    isEighthColumnExclusion(this.piecePosition, currentCandidateDestinationOffset)) {
                     continue;
                 }
-
                 final Tile candidateDestinationTile = board.getTile(candidateDestinationCoordinate);
                 if (!candidateDestinationTile.isTileOccupied()) {
                     legalMoves.add(new MajorPieceMove(board, this, candidateDestinationCoordinate));
