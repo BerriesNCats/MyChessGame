@@ -1,5 +1,6 @@
-package com.game.MyChessGame.models;
+package com.game.MyChessGame.models.board;
 
+import com.game.MyChessGame.models.pieces.Piece;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class OccupiedTile extends Tile{
+public class OccupiedTile extends Tile {
 
     Piece pieceOnTile;
 

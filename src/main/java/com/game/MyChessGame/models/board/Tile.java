@@ -1,4 +1,4 @@
-package com.game.MyChessGame.models;
+package com.game.MyChessGame.models.board;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
