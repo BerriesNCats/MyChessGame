@@ -7,10 +7,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Collection;
 import java.util.List;
 
 
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 public abstract class Piece {
 
@@ -18,7 +20,7 @@ public abstract class Piece {
 
     protected Alliance pieceAlliance;
 
-    Piece() {}
-    public abstract List<Move> calculateLegalMoves(final Board board);
+
+    public abstract Collection<Move> calculateLegalMoves(final Board board);
 
 }

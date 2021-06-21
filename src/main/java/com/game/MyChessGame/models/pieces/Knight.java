@@ -2,12 +2,14 @@ package com.game.MyChessGame.models.pieces;
 
 import com.game.MyChessGame.models.Alliance;
 import com.game.MyChessGame.models.board.Board;
+import com.game.MyChessGame.models.board.BoardUtils;
 import com.game.MyChessGame.models.board.Move;
 import com.game.MyChessGame.models.board.Tile;
 import com.google.common.collect.ImmutableList;
 import lombok.Data;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Data
@@ -20,16 +22,20 @@ public class Knight extends Piece{
     }
 
     @Override
-    public List<Move> calculateLegalMoves(Board board) {
-        int candidateDestinationCoordinate;
+    public Collection<Move> calculateLegalMoves(Board board) {
         final List<Move> legalMoves = new ArrayList<>();
 
-        for (final int currentCandidate : CANDIDATE_MOVE_COORDINATES) {
-            candidateDestinationCoordinate = this.piecePosition + currentCandidate;
+        for (final int currentCandidateOffset : CANDIDATE_MOVE_COORDINATES) {
+            int candidateDestinationCoordinate = this.piecePosition + currentCandidateOffset;
+            if (BoardUtils.isValidTileCoordinate(candidateDestinationCoordinate)) {
+                if (isFirstColumnExclusion(this.piecePosition, currentCandidateOffset) ||
+                    isSecondColumnExclusion(this.piecePosition, currentCandidateOffset) ||
+                    isSeventhColumnExclusion(this.piecePosition, currentCandidateOffset) ||
+                    isEighthColumnExclusion(this.piecePosition, currentCandidateOffset)) {
+                    continue;
+                }
 
-            if (true /* isValidTileCoordinate */) {
                 final Tile candidateDestinationTile = board.getTile(candidateDestinationCoordinate);
-
                 if (!candidateDestinationTile.isTileOccupied()) {
                     legalMoves.add(new Move());
                 } else {
@@ -41,7 +47,24 @@ public class Knight extends Piece{
                 }
             }
         }
-
         return ImmutableList.copyOf(legalMoves);
+    }
+
+    private static boolean isFirstColumnExclusion(final int currentPosition, final int candidateOffset) {
+        return BoardUtils.FIRST_COLUMN[currentPosition] && (candidateOffset == -17 || candidateOffset == -10 ||
+                candidateOffset == 6 || candidateOffset == 15);
+    }
+
+    private static boolean isSecondColumnExclusion(final int currentPosition, final int candidateOffset) {
+        return BoardUtils.SECOND_COLUMN[currentPosition] && (candidateOffset == -10 || candidateOffset == 6);
+    }
+
+    private static boolean isSeventhColumnExclusion(final int currentPosition, final int candidateOffset) {
+        return BoardUtils.SEVENTH_COLUMN[currentPosition] && (candidateOffset == -6 || candidateOffset == 10);
+    }
+
+    private static boolean isEighthColumnExclusion(final int currentPosition, final int candidateOffset) {
+        return BoardUtils.EIGHTH_COLUMN[currentPosition] && (candidateOffset == -15 || candidateOffset == -6 ||
+                candidateOffset == 10 || candidateOffset == 17);
     }
 }
