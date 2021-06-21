@@ -7,8 +7,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
-public class OccupiedTile extends Tile {
+class OccupiedTile extends Tile {
 
     private Piece pieceOnTile;
 
@@ -20,6 +19,11 @@ public class OccupiedTile extends Tile {
     @Override
     public boolean isTileOccupied() {
         return true;
+    }
+
+    @Override
+    public Piece getPiece() {
+        return null;
     }
 
 

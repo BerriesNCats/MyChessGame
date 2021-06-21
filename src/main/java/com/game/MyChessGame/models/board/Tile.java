@@ -11,12 +11,17 @@ import java.util.Map;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 public abstract class Tile {
 
     protected int tileCoordinate;
 
-    private static Map<Integer, EmptyTile> EMPTY_TILES = createAllPossibleEmptyTiles();
+    Tile(int tileCoordinate) {
+        this.tileCoordinate = tileCoordinate;
+    }
+
+    private static Map<Integer, EmptyTile> EMPTY_TILES_CACHE = createAllPossibleEmptyTiles();
+
+
 
     private static Map<Integer, EmptyTile> createAllPossibleEmptyTiles() {
         final Map<Integer, EmptyTile> emptyTileMap = new HashMap<>();
@@ -27,10 +32,11 @@ public abstract class Tile {
     }
 
     public static Tile createTile(final int tileCoordinate, final Piece piece) {
-        return piece != null ? new OccupiedTile(tileCoordinate, piece) : EMPTY_TILES.get(tileCoordinate);
+        return piece != null ? new OccupiedTile(tileCoordinate, piece) : EMPTY_TILES_CACHE.get(tileCoordinate);
     }
 
     public abstract boolean isTileOccupied();
 
 
+    public abstract Piece getPiece();
 }
