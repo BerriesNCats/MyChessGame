@@ -1,10 +1,7 @@
 package com.game.MyChessGame.models.pieces;
 
 import com.game.MyChessGame.models.Alliance;
-import com.game.MyChessGame.models.board.Board;
-import com.game.MyChessGame.models.board.BoardUtils;
-import com.game.MyChessGame.models.board.Move;
-import com.game.MyChessGame.models.board.Tile;
+import com.game.MyChessGame.models.board.*;
 import com.google.common.collect.ImmutableList;
 import lombok.Data;
 
@@ -37,12 +34,13 @@ public class Knight extends Piece{
 
                 final Tile candidateDestinationTile = board.getTile(candidateDestinationCoordinate);
                 if (!candidateDestinationTile.isTileOccupied()) {
-                    legalMoves.add(new Move());
+                    legalMoves.add(new MajorPieceMove(board, this, candidateDestinationCoordinate));
                 } else {
                     final Piece pieceAtDestination = candidateDestinationTile.getPiece();
                     final Alliance pieceAlliance = pieceAtDestination.getPieceAlliance();
                     if (this.pieceAlliance != pieceAlliance) {
-                        legalMoves.add(new Move());
+                        legalMoves.add(new AttackMove
+                                (board, this, candidateDestinationCoordinate, pieceAtDestination));
                     }
                 }
             }

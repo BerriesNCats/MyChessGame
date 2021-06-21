@@ -1,7 +1,6 @@
 package com.game.MyChessGame.models.board;
 
 import com.game.MyChessGame.models.pieces.Piece;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

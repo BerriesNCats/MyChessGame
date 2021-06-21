@@ -15,17 +15,16 @@ public abstract class Tile {
 
     protected int tileCoordinate;
 
-    Tile(int tileCoordinate) {
+    protected Tile(int tileCoordinate) {
         this.tileCoordinate = tileCoordinate;
     }
 
     private static Map<Integer, EmptyTile> EMPTY_TILES_CACHE = createAllPossibleEmptyTiles();
 
 
-
     private static Map<Integer, EmptyTile> createAllPossibleEmptyTiles() {
         final Map<Integer, EmptyTile> emptyTileMap = new HashMap<>();
-        for(int i = 0; i < 64; i++) {
+        for(int i = 0; i < BoardUtils.NUMBER_OF_TILES; i++) {
             emptyTileMap.put(i, new EmptyTile(i));
         }
         return ImmutableMap.copyOf(emptyTileMap);
