@@ -24,7 +24,6 @@ public class King extends Piece{
     private final static int ONE_SPACE_DOWN = 8;
     private final static int ONE_SPACE_RIGHT_DIAGONAL_DOWN = 9;
 
-
     private final static int[] CANDIDATE_MOVE_COORDINATES = {
             ONE_SPACE_LEFT_DIAGONAL_UP, ONE_SPACE_UP, ONE_SPACE_RIGHT_DIAGONAL_UP, ONE_SPACE_LEFT,
             ONE_SPACE_RIGHT, ONE_SPACE_LEFT_DIAGONAL_DOWN, ONE_SPACE_DOWN, ONE_SPACE_RIGHT_DIAGONAL_DOWN
