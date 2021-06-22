@@ -13,14 +13,14 @@ import java.util.List;
 @NoArgsConstructor
 public class Bishop extends Piece{
 
-    private final static int ONE_SPACE_LEFT_DIAGONAL_FORWARD = 7;
-    private final static int ONE_SPACE_LEFT_DIAGONAL_BACKWARD = -7;
-    private final static int ONE_SPACE_RIGHT_DIAGONAL_FORWARD = 9;
-    private final static int ONE_SPACE_RIGHT_DIAGONAL_BACKWARD = -9;
+    private final static int ONE_SPACE_LEFT_DIAGONAL_DOWN = 7;
+    private final static int ONE_SPACE_RIGHT_DIAGONAL_UP = -7;
+    private final static int ONE_SPACE_RIGHT_DIAGONAL_DOWN = 9;
+    private final static int ONE_SPACE_LEFT_DIAGONAL_UP = -9;
 
     private final static int[] CANDIDATE_MOVE_COORDINATES = {
-            ONE_SPACE_LEFT_DIAGONAL_FORWARD, ONE_SPACE_LEFT_DIAGONAL_BACKWARD,
-            ONE_SPACE_RIGHT_DIAGONAL_FORWARD, ONE_SPACE_RIGHT_DIAGONAL_BACKWARD
+            ONE_SPACE_LEFT_DIAGONAL_DOWN, ONE_SPACE_RIGHT_DIAGONAL_UP,
+            ONE_SPACE_RIGHT_DIAGONAL_DOWN, ONE_SPACE_LEFT_DIAGONAL_UP
     };
 
     public Bishop(final int piecePosition, final Alliance pieceAlliance) {
@@ -60,13 +60,13 @@ public class Bishop extends Piece{
     }
 
     private static boolean isFirstColumnExclusion(final int currentPosition, final int candidateOffset) {
-        return BoardUtils.FIRST_COLUMN[currentPosition] && (candidateOffset == ONE_SPACE_RIGHT_DIAGONAL_BACKWARD ||
-                candidateOffset == ONE_SPACE_LEFT_DIAGONAL_FORWARD);
+        return BoardUtils.FIRST_COLUMN[currentPosition] && (candidateOffset == ONE_SPACE_LEFT_DIAGONAL_UP ||
+                candidateOffset == ONE_SPACE_LEFT_DIAGONAL_DOWN);
     }
 
     private static boolean isEighthColumnExclusion(final int currentPosition, final int candidateOffset) {
-        return BoardUtils.EIGHTH_COLUMN[currentPosition] && (candidateOffset == ONE_SPACE_LEFT_DIAGONAL_BACKWARD ||
-                candidateOffset == ONE_SPACE_RIGHT_DIAGONAL_FORWARD);
+        return BoardUtils.EIGHTH_COLUMN[currentPosition] && (candidateOffset == ONE_SPACE_RIGHT_DIAGONAL_UP ||
+                candidateOffset == ONE_SPACE_RIGHT_DIAGONAL_DOWN);
     }
 
 

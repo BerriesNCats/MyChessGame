@@ -15,7 +15,20 @@ import java.util.List;
 @NoArgsConstructor
 public class King extends Piece{
 
-    private final static int[] CANDIDATE_MOVE_COORDINATES = {-9, -8, -7, -1, 1, 7, 8, 9};
+    private final static int ONE_SPACE_LEFT_DIAGONAL_UP = -9;
+    private final static int ONE_SPACE_UP = -8;
+    private final static int ONE_SPACE_RIGHT_DIAGONAL_UP = -7;
+    private final static int ONE_SPACE_LEFT = -1;
+    private final static int ONE_SPACE_RIGHT = 1;
+    private final static int ONE_SPACE_LEFT_DIAGONAL_DOWN = 7;
+    private final static int ONE_SPACE_DOWN = 8;
+    private final static int ONE_SPACE_RIGHT_DIAGONAL_DOWN = 9;
+
+
+    private final static int[] CANDIDATE_MOVE_COORDINATES = {
+            ONE_SPACE_LEFT_DIAGONAL_UP, ONE_SPACE_UP, ONE_SPACE_RIGHT_DIAGONAL_UP, ONE_SPACE_LEFT,
+            ONE_SPACE_RIGHT, ONE_SPACE_LEFT_DIAGONAL_DOWN, ONE_SPACE_DOWN, ONE_SPACE_RIGHT_DIAGONAL_DOWN
+    };
 
     public King(int piecePosition, Alliance pieceAlliance) {
         super(piecePosition, pieceAlliance);
