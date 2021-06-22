@@ -13,18 +13,18 @@ import java.util.List;
 @NoArgsConstructor
 public class Knight extends Piece{
 
-    private final static int JUMP_BACKWARD_LEFT = -15;
-    private final static int JUMP_BACKWARD_LEFT_BACKWARD = -17;
-    private final static int JUMP_BACKWARD_RIGHT = -6;
-    private final static int JUMP_BACKWARD_RIGHT_BACKWARD = -10;
-    private final static int JUMP_FORWARD_LEFT = 6;
-    private final static int JUMP_FORWARD_LEFT_FORWARD = 10;
-    private final static int JUMP_FORWARD_RIGHT = 15;
-    private final static int JUMP_FORWARD_RIGHT_FORWARD = 17;
+    private final static int JUMP_UP_ONE_SPACE_LEFT = -17;
+    private final static int JUMP_UP_ONE_SPACE_RIGHT = -15;
+    private final static int JUMP_LEFT_ONE_SPACE_UP = -10;
+    private final static int JUMP_RIGHT_ONE_SPACE_UP = -6;
+    private final static int JUMP_LEFT_ONE_SPACE_DOWN = 6;
+    private final static int JUMP_RIGHT_ONE_SPACE_DOWN = 10;
+    private final static int JUMP_DOWN_ONE_SPACE_LEFT = 15;
+    private final static int JUMP_DOWN_ONE_SPACE_RIGHT = 17;
 
     private final static int[] CANDIDATE_MOVE_COORDINATES = {
-            JUMP_BACKWARD_LEFT, JUMP_BACKWARD_LEFT_BACKWARD, JUMP_BACKWARD_RIGHT, JUMP_BACKWARD_RIGHT_BACKWARD,
-            JUMP_FORWARD_LEFT, JUMP_FORWARD_LEFT_FORWARD, JUMP_FORWARD_RIGHT, JUMP_FORWARD_RIGHT_FORWARD
+            JUMP_UP_ONE_SPACE_LEFT, JUMP_RIGHT_ONE_SPACE_UP, JUMP_UP_ONE_SPACE_RIGHT, JUMP_LEFT_ONE_SPACE_UP,
+            JUMP_LEFT_ONE_SPACE_DOWN, JUMP_RIGHT_ONE_SPACE_DOWN, JUMP_DOWN_ONE_SPACE_LEFT, JUMP_DOWN_ONE_SPACE_RIGHT
     };
 
     public Knight(final int piecePosition, final Alliance pieceAlliance) {
@@ -62,23 +62,23 @@ public class Knight extends Piece{
 
     private static boolean isFirstColumnExclusion(final int currentPosition, final int candidateOffset) {
         return BoardUtils.FIRST_COLUMN[currentPosition] &&
-                (candidateOffset == JUMP_BACKWARD_LEFT_BACKWARD || candidateOffset == JUMP_BACKWARD_RIGHT_BACKWARD ||
-                candidateOffset == JUMP_FORWARD_LEFT || candidateOffset == JUMP_FORWARD_RIGHT);
+                (candidateOffset == JUMP_UP_ONE_SPACE_LEFT || candidateOffset == JUMP_LEFT_ONE_SPACE_UP ||
+                candidateOffset == JUMP_LEFT_ONE_SPACE_DOWN || candidateOffset == JUMP_DOWN_ONE_SPACE_LEFT);
     }
 
     private static boolean isSecondColumnExclusion(final int currentPosition, final int candidateOffset) {
-        return BoardUtils.SECOND_COLUMN[currentPosition] &&
-                (candidateOffset == JUMP_BACKWARD_RIGHT_BACKWARD || candidateOffset == JUMP_FORWARD_LEFT);
+        return BoardUtils.SECOND_COLUMN[currentPosition] && (candidateOffset == JUMP_LEFT_ONE_SPACE_UP ||
+                candidateOffset == JUMP_LEFT_ONE_SPACE_DOWN);
     }
 
     private static boolean isSeventhColumnExclusion(final int currentPosition, final int candidateOffset) {
-        return BoardUtils.SEVENTH_COLUMN[currentPosition] && (candidateOffset == JUMP_BACKWARD_RIGHT ||
-                candidateOffset == JUMP_FORWARD_LEFT_FORWARD);
+        return BoardUtils.SEVENTH_COLUMN[currentPosition] && (candidateOffset == JUMP_RIGHT_ONE_SPACE_UP ||
+                candidateOffset == JUMP_RIGHT_ONE_SPACE_DOWN);
     }
 
     private static boolean isEighthColumnExclusion(final int currentPosition, final int candidateOffset) {
-        return BoardUtils.EIGHTH_COLUMN[currentPosition] &&
-                (candidateOffset == JUMP_BACKWARD_LEFT || candidateOffset == JUMP_BACKWARD_RIGHT ||
-                candidateOffset == JUMP_FORWARD_LEFT_FORWARD || candidateOffset == JUMP_FORWARD_RIGHT_FORWARD);
+        return BoardUtils.EIGHTH_COLUMN[currentPosition] && (candidateOffset == JUMP_UP_ONE_SPACE_RIGHT ||
+                candidateOffset == JUMP_RIGHT_ONE_SPACE_UP || candidateOffset == JUMP_RIGHT_ONE_SPACE_DOWN ||
+                candidateOffset == JUMP_DOWN_ONE_SPACE_RIGHT);
     }
 }
