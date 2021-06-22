@@ -1,6 +1,5 @@
 package com.game.MyChessGame.models.pieces;
 
-import com.game.MyChessGame.models.Alliance;
 import com.game.MyChessGame.models.board.*;
 import com.google.common.collect.ImmutableList;
 import lombok.Data;
@@ -14,12 +13,20 @@ import java.util.List;
 @NoArgsConstructor
 public class Rook extends Piece{
 
-    private final static int[] CANDIDATE_MOVE_COORDINATES = {-8, -1, 1, 8};
+    private final static int ONE_SPACE_FORWARD = 8;
+    private final static int ONE_SPACE_BACKWARD = -8;
+    private final static int ONE_SPACE_LEFT = -1;
+    private final static int ONE_SPACE_RIGHT = 1;
+
+    private final static int[] CANDIDATE_MOVE_COORDINATES = {
+            ONE_SPACE_FORWARD, ONE_SPACE_BACKWARD, ONE_SPACE_LEFT, ONE_SPACE_RIGHT
+    };
 
     public Rook(int piecePosition, Alliance pieceAlliance) {
         super(piecePosition, pieceAlliance);
     }
 
+    @Override
     public Collection<Move> calculateLegalMoves(final Board board) {
         final List<Move> legalMoves = new ArrayList<>();
 
@@ -52,10 +59,10 @@ public class Rook extends Piece{
     }
 
     private static boolean isFirstColumnExclusion(final int currentPosition, final int candidateOffset) {
-        return BoardUtils.FIRST_COLUMN[currentPosition] && (candidateOffset == -1);
+        return BoardUtils.FIRST_COLUMN[currentPosition] && (candidateOffset == ONE_SPACE_LEFT);
     }
 
     private static boolean isEighthColumnExclusion(final int currentPosition, final int candidateOffset) {
-        return BoardUtils.EIGHTH_COLUMN[currentPosition] && (candidateOffset == 1);
+        return BoardUtils.EIGHTH_COLUMN[currentPosition] && (candidateOffset == ONE_SPACE_RIGHT);
     }
 }

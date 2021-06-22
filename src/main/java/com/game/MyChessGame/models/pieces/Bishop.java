@@ -1,6 +1,5 @@
 package com.game.MyChessGame.models.pieces;
 
-import com.game.MyChessGame.models.Alliance;
 import com.game.MyChessGame.models.board.*;
 import com.google.common.collect.ImmutableList;
 import lombok.Data;
@@ -14,7 +13,15 @@ import java.util.List;
 @NoArgsConstructor
 public class Bishop extends Piece{
 
-    private final static int[] CANDIDATE_MOVE_COORDINATES = {-9, -7, 7, 9};
+    private final static int ONE_SPACE_LEFT_DIAGONAL_FORWARD = 7;
+    private final static int ONE_SPACE_LEFT_DIAGONAL_BACKWARD = -7;
+    private final static int ONE_SPACE_RIGHT_DIAGONAL_FORWARD = 9;
+    private final static int ONE_SPACE_RIGHT_DIAGONAL_BACKWARD = -9;
+
+    private final static int[] CANDIDATE_MOVE_COORDINATES = {
+            ONE_SPACE_LEFT_DIAGONAL_FORWARD, ONE_SPACE_LEFT_DIAGONAL_BACKWARD,
+            ONE_SPACE_RIGHT_DIAGONAL_FORWARD, ONE_SPACE_RIGHT_DIAGONAL_BACKWARD
+    };
 
     public Bishop(final int piecePosition, final Alliance pieceAlliance) {
         super(piecePosition, pieceAlliance);
@@ -53,11 +60,13 @@ public class Bishop extends Piece{
     }
 
     private static boolean isFirstColumnExclusion(final int currentPosition, final int candidateOffset) {
-        return BoardUtils.FIRST_COLUMN[currentPosition] && (candidateOffset == -9 || candidateOffset == 7);
+        return BoardUtils.FIRST_COLUMN[currentPosition] && (candidateOffset == ONE_SPACE_RIGHT_DIAGONAL_BACKWARD ||
+                candidateOffset == ONE_SPACE_LEFT_DIAGONAL_FORWARD);
     }
 
     private static boolean isEighthColumnExclusion(final int currentPosition, final int candidateOffset) {
-        return BoardUtils.EIGHTH_COLUMN[currentPosition] && (candidateOffset == -7 || candidateOffset == 9);
+        return BoardUtils.EIGHTH_COLUMN[currentPosition] && (candidateOffset == ONE_SPACE_LEFT_DIAGONAL_BACKWARD ||
+                candidateOffset == ONE_SPACE_RIGHT_DIAGONAL_FORWARD);
     }
 
 
