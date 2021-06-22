@@ -13,17 +13,17 @@ import java.util.List;
 @NoArgsConstructor
 public class Rook extends Piece{
 
-    private final static int ONE_SPACE_FORWARD = 8;
-    private final static int ONE_SPACE_BACKWARD = -8;
+    private final static int ONE_SPACE_DOWN = 8;
+    private final static int ONE_SPACE_UP = -8;
     private final static int ONE_SPACE_LEFT = -1;
     private final static int ONE_SPACE_RIGHT = 1;
 
     private final static int[] CANDIDATE_MOVE_COORDINATES = {
-            ONE_SPACE_FORWARD, ONE_SPACE_BACKWARD, ONE_SPACE_LEFT, ONE_SPACE_RIGHT
+            ONE_SPACE_DOWN, ONE_SPACE_UP, ONE_SPACE_LEFT, ONE_SPACE_RIGHT
     };
 
-    public Rook(int piecePosition, Alliance pieceAlliance) {
-        super(piecePosition, pieceAlliance);
+    public Rook(final Alliance pieceAlliance, final int piecePosition) {
+        super(pieceAlliance, piecePosition);
     }
 
     @Override

@@ -25,8 +25,8 @@ public class Pawn extends Piece{
             ONE_SPACE_FORWARD, TWO_SPACES_FORWARD, ATTACK_LEFT, ATTACK_RIGHT
     };
 
-    public Pawn(final int piecePosition, final Alliance pieceAlliance) {
-        super(piecePosition, pieceAlliance);
+    public Pawn(final Alliance pieceAlliance, final int piecePosition) {
+        super(pieceAlliance, piecePosition);
     }
 
     @Override

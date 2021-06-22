@@ -13,18 +13,18 @@ import java.util.List;
 @NoArgsConstructor
 public class Bishop extends Piece{
 
-    private final static int ONE_SPACE_LEFT_DIAGONAL_DOWN = 7;
     private final static int ONE_SPACE_RIGHT_DIAGONAL_UP = -7;
-    private final static int ONE_SPACE_RIGHT_DIAGONAL_DOWN = 9;
     private final static int ONE_SPACE_LEFT_DIAGONAL_UP = -9;
+    private final static int ONE_SPACE_LEFT_DIAGONAL_DOWN = 7;
+    private final static int ONE_SPACE_RIGHT_DIAGONAL_DOWN = 9;
 
     private final static int[] CANDIDATE_MOVE_COORDINATES = {
             ONE_SPACE_LEFT_DIAGONAL_DOWN, ONE_SPACE_RIGHT_DIAGONAL_UP,
             ONE_SPACE_RIGHT_DIAGONAL_DOWN, ONE_SPACE_LEFT_DIAGONAL_UP
     };
 
-    public Bishop(final int piecePosition, final Alliance pieceAlliance) {
-        super(piecePosition, pieceAlliance);
+    public Bishop(final Alliance pieceAlliance, final int piecePosition) {
+        super(pieceAlliance, piecePosition);
     }
 
     @Override
@@ -59,11 +59,13 @@ public class Bishop extends Piece{
         return ImmutableList.copyOf(legalMoves);
     }
 
+    // If a Bishop is on the 1st column it cannot move left
     private static boolean isFirstColumnExclusion(final int currentPosition, final int candidateOffset) {
         return BoardUtils.FIRST_COLUMN[currentPosition] && (candidateOffset == ONE_SPACE_LEFT_DIAGONAL_UP ||
                 candidateOffset == ONE_SPACE_LEFT_DIAGONAL_DOWN);
     }
 
+    // If a Bishop is on the 8th column it cannot move right
     private static boolean isEighthColumnExclusion(final int currentPosition, final int candidateOffset) {
         return BoardUtils.EIGHTH_COLUMN[currentPosition] && (candidateOffset == ONE_SPACE_RIGHT_DIAGONAL_UP ||
                 candidateOffset == ONE_SPACE_RIGHT_DIAGONAL_DOWN);

@@ -27,8 +27,8 @@ public class Queen extends Piece{
             ONE_SPACE_RIGHT_DIAGONAL_UP, ONE_SPACE_RIGHT_DIAGONAL_DOWN, ONE_SPACE_LEFT_DIAGONAL_UP
     };
 
-    public Queen(int piecePosition, Alliance pieceAlliance) {
-        super(piecePosition, pieceAlliance);
+    public Queen(final Alliance pieceAlliance, final int piecePosition) {
+        super(pieceAlliance, piecePosition);
     }
 
     @Override
@@ -63,11 +63,13 @@ public class Queen extends Piece{
         return ImmutableList.copyOf(legalMoves);
     }
 
+    // If a Queen is on the 1st column it cannot move left in any direction
     private static boolean isFirstColumnExclusion(final int currentPosition, final int candidateOffset) {
         return BoardUtils.FIRST_COLUMN[currentPosition] && (candidateOffset == ONE_SPACE_LEFT ||
                 candidateOffset == ONE_SPACE_LEFT_DIAGONAL_UP || candidateOffset == ONE_SPACE_LEFT_DIAGONAL_DOWN);
     }
 
+    // If a Queen is on the 8th column it cannot move right in any direction
     private static boolean isEighthColumnExclusion(final int currentPosition, final int candidateOffset) {
         return BoardUtils.EIGHTH_COLUMN[currentPosition] && (candidateOffset == ONE_SPACE_RIGHT_DIAGONAL_UP ||
                 candidateOffset == ONE_SPACE_RIGHT || candidateOffset == ONE_SPACE_RIGHT_DIAGONAL_DOWN);
