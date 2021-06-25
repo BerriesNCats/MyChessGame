@@ -1,6 +1,8 @@
 package com.game.MyChessGame.models.board;
 
 import com.game.MyChessGame.models.pieces.*;
+import com.game.MyChessGame.models.player.BlackPlayer;
+import com.game.MyChessGame.models.player.WhitePlayer;
 import com.google.common.collect.ImmutableList;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,6 +20,9 @@ public class Board {
     private Collection<Piece> whitePieces;
     private Collection<Piece> blackPieces;
 
+    private WhitePlayer whitePlayer;
+    private BlackPlayer blackPlayer;
+
     Board(BoardBuilder boardBuilder) {
         this.gameBoard = createGameBoard(boardBuilder);
         this.whitePieces = calculateActivePieces(this.gameBoard, Alliance.WHITE);
@@ -25,6 +30,9 @@ public class Board {
 
         final Collection<Move> whiteStandardLegalMoves = calculateLegalMoves(this.whitePieces);
         final Collection<Move> blackStandardLegalMoves = calculateLegalMoves(this.blackPieces);
+
+        this.whitePlayer = new WhitePlayer(this, whiteStandardLegalMoves, blackStandardLegalMoves);
+        this.blackPlayer = new BlackPlayer(this, whiteStandardLegalMoves, blackStandardLegalMoves);
     }
 
     private Collection<Move> calculateLegalMoves(final Collection<Piece> pieces) {
@@ -33,6 +41,14 @@ public class Board {
             legalMoves.addAll(piece.calculateLegalMoves(this));
         }
         return ImmutableList.copyOf(legalMoves);
+    }
+
+    public Collection<Piece> getBlackPieces() {
+        return this.blackPieces;
+    }
+
+    public Collection<Piece> getWhitePieces() {
+        return this.whitePieces;
     }
 
     private static List<Tile> createGameBoard(final BoardBuilder boardBuilder) {
