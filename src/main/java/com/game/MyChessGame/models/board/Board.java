@@ -47,7 +47,7 @@ public class Board {
         final List<Piece> activePieces = new ArrayList<>();
         for (final Tile tile : gameBoard) {
             if(tile.isTileOccupied()) {
-                final Piece piece = tile.getPiece();
+                Piece piece = tile.getPiece();
                 if(piece.getPieceAlliance() == alliance) {
                     activePieces.add(piece);
                 }

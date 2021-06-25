@@ -24,7 +24,7 @@ class OccupiedTile extends Tile {
 
     @Override
     public Piece getPiece() {
-        return null;
+        return this.pieceOnTile;
     }
 
     @Override

@@ -24,7 +24,7 @@ public class BoardBuilder extends Board {
     }
 
     public BoardBuilder setNextMoveAlliance(final Alliance alliance) {
-        this.nextMoveAlliance = nextMoveAlliance;
+        this.nextMoveAlliance = alliance;
         return this;
     }
 
