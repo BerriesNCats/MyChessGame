@@ -85,4 +85,9 @@ public class Knight extends Piece{
                 candidateOffset == JUMP_RIGHT_ONE_SPACE_UP || candidateOffset == JUMP_RIGHT_ONE_SPACE_DOWN ||
                 candidateOffset == JUMP_DOWN_ONE_SPACE_RIGHT);
     }
+
+    @Override
+    public String toString() {
+        return PieceType.KNIGHT.toString();
+    }
 }

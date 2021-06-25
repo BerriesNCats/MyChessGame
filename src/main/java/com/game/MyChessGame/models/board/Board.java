@@ -5,16 +5,34 @@ import com.google.common.collect.ImmutableList;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Locale;
 
 @Data
 @NoArgsConstructor
 public class Board {
 
     private List<Tile> gameBoard;
+    private Collection<Piece> whitePieces;
+    private Collection<Piece> blackPieces;
 
     Board(BoardBuilder boardBuilder) {
         this.gameBoard = createGameBoard(boardBuilder);
+        this.whitePieces = calculateActivePieces(this.gameBoard, Alliance.WHITE);
+        this.blackPieces = calculateActivePieces(this.gameBoard, Alliance.BLACK);
+
+        final Collection<Move> whiteStandardLegalMoves = calculateLegalMoves(this.whitePieces);
+        final Collection<Move> blackStandardLegalMoves = calculateLegalMoves(this.blackPieces);
+    }
+
+    private Collection<Move> calculateLegalMoves(final Collection<Piece> pieces) {
+        final List<Move> legalMoves = new ArrayList<>();
+        for (final Piece piece : pieces) {
+            legalMoves.addAll(piece.calculateLegalMoves(this));
+        }
+        return ImmutableList.copyOf(legalMoves);
     }
 
     private static List<Tile> createGameBoard(final BoardBuilder boardBuilder) {
@@ -23,6 +41,19 @@ public class Board {
             tiles[i] = Tile.createTile(i, boardBuilder.boardConfiguration.get(i));
         }
         return ImmutableList.copyOf(tiles);
+    }
+
+    private static Collection<Piece> calculateActivePieces(final List<Tile> gameBoard, final Alliance alliance) {
+        final List<Piece> activePieces = new ArrayList<>();
+        for (final Tile tile : gameBoard) {
+            if(tile.isTileOccupied()) {
+                final Piece piece = tile.getPiece();
+                if(piece.getPieceAlliance() == alliance) {
+                    activePieces.add(piece);
+                }
+            }
+        }
+        return ImmutableList.copyOf(activePieces);
     }
 
     public static Board createStandardBoard() {
@@ -66,12 +97,27 @@ public class Board {
         boardBuilder.setPiece(new Pawn(Alliance.WHITE, 49));
         boardBuilder.setPiece(new Pawn(Alliance.WHITE, 48));
 
+        // Sets white to have the first move
         boardBuilder.setNextMoveAlliance(Alliance.WHITE);
 
         return boardBuilder.build();
     }
 
     public Tile getTile(final int tileCoordinate) {
-        return null;
+        return gameBoard.get(tileCoordinate);
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < BoardUtils.NUMBER_OF_TILES; i++) {
+            final String tileText = this.gameBoard.get(i).toString();
+            stringBuilder.append(String.format("%3s", tileText));
+            if ((i + 1) % BoardUtils.NUMBER_OF_TILES_PER_ROW == 0) {
+                stringBuilder.append("\n");
+            }
+        }
+        return stringBuilder.toString();
+    }
+
 }

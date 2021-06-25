@@ -5,14 +5,18 @@ import com.game.MyChessGame.models.pieces.Piece;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @Data
-@NoArgsConstructor
 public class BoardBuilder extends Board {
 
     Map<Integer, Piece> boardConfiguration;
     Alliance nextMoveAlliance;
+
+    public BoardBuilder() {
+        this.boardConfiguration = new HashMap<>();
+    }
 
     public BoardBuilder setPiece(final Piece piece) {
         this.boardConfiguration.put(piece.getPiecePosition(), piece);

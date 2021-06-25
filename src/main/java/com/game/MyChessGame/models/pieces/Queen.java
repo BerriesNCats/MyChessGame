@@ -74,4 +74,9 @@ public class Queen extends Piece{
         return BoardUtils.EIGHTH_COLUMN[currentPosition] && (candidateOffset == ONE_SPACE_RIGHT_DIAGONAL_UP ||
                 candidateOffset == ONE_SPACE_RIGHT || candidateOffset == ONE_SPACE_RIGHT_DIAGONAL_DOWN);
     }
+
+    @Override
+    public String toString() {
+        return PieceType.QUEEN.toString();
+    }
 }

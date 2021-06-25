@@ -21,4 +21,9 @@ public final class EmptyTile extends Tile {
         return null;
     }
 
+    @Override
+    public String toString() {
+        return "-";
+    }
+
 }
