@@ -1,7 +1,7 @@
 package com.game.MyChessGame.models.player;
 
 import com.game.MyChessGame.models.board.Board;
-import com.game.MyChessGame.models.board.Move;
+import com.game.MyChessGame.models.board.move.Move;
 import com.game.MyChessGame.models.pieces.Alliance;
 import com.game.MyChessGame.models.pieces.Piece;
 import lombok.Data;

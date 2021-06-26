@@ -1,6 +1,9 @@
 package com.game.MyChessGame.models.pieces;
 
 import com.game.MyChessGame.models.board.*;
+import com.game.MyChessGame.models.board.move.AttackMove;
+import com.game.MyChessGame.models.board.move.MajorPieceMove;
+import com.game.MyChessGame.models.board.move.Move;
 import com.google.common.collect.ImmutableList;
 import lombok.Data;
 import lombok.NoArgsConstructor;

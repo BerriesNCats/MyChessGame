@@ -1,16 +1,18 @@
 package com.game.MyChessGame.models.board;
 
+import com.game.MyChessGame.models.board.move.Move;
 import com.game.MyChessGame.models.pieces.*;
 import com.game.MyChessGame.models.player.BlackPlayer;
+import com.game.MyChessGame.models.player.Player;
 import com.game.MyChessGame.models.player.WhitePlayer;
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Iterables;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Locale;
 
 @Data
 @NoArgsConstructor
@@ -22,6 +24,7 @@ public class Board {
 
     private WhitePlayer whitePlayer;
     private BlackPlayer blackPlayer;
+    private Player currentPlayer;
 
     Board(BoardBuilder boardBuilder) {
         this.gameBoard = createGameBoard(boardBuilder);
@@ -33,6 +36,7 @@ public class Board {
 
         this.whitePlayer = new WhitePlayer(this, whiteStandardLegalMoves, blackStandardLegalMoves);
         this.blackPlayer = new BlackPlayer(this, whiteStandardLegalMoves, blackStandardLegalMoves);
+        this.currentPlayer = boardBuilder.nextMoveAlliance.choosePlayer(this.whitePlayer, this.blackPlayer);
     }
 
     private Collection<Move> calculateLegalMoves(final Collection<Piece> pieces) {
@@ -136,4 +140,8 @@ public class Board {
         return stringBuilder.toString();
     }
 
+    public Iterable<Move> getAllLegalMoves() {
+        return Iterables.unmodifiableIterable(Iterables.concat
+                (this.whitePlayer.getLegalMoves(), this.blackPlayer.getLegalMoves()));
+    }
 }

@@ -1,7 +1,7 @@
 package com.game.MyChessGame.models.player;
 
 import com.game.MyChessGame.models.board.Board;
-import com.game.MyChessGame.models.board.Move;
+import com.game.MyChessGame.models.board.move.Move;
 import com.game.MyChessGame.models.pieces.Alliance;
 import com.game.MyChessGame.models.pieces.King;
 import com.game.MyChessGame.models.pieces.Piece;
@@ -28,8 +28,6 @@ public abstract class Player {
         this.legalMoves = legalMoves;
         this.isInCheck = !Player.calculateAttacksOnTile(this.playerKing.getPiecePosition(), opponentMoves).isEmpty();
     }
-
-
 
     private King establishKing() {
         for(Piece piece : getActivePieces()) {
@@ -81,7 +79,18 @@ public abstract class Player {
     }
 
     public MoveTransition makeMove(final Move move) {
-        return null;
+        if (!isMoveLegal(move)) {
+            return new MoveTransition(this.board, move, MoveStatus.ILLEGAL_MOVE);
+        }
+        final Board transitionBoard = move.execute();
+        final Collection<Move> kingAttacks = Player.calculateAttacksOnTile
+                (transitionBoard.getCurrentPlayer().getOpponent().getPlayerKing().getPiecePosition(),
+                        transitionBoard.getCurrentPlayer().getLegalMoves());
+
+        if (!kingAttacks.isEmpty()) {
+            return new MoveTransition(this.board, move, MoveStatus.LEAVES_PLAYER_IN_CHECK);
+        }
+        return new MoveTransition(transitionBoard, move, MoveStatus.DONE);
     }
 
     public abstract Collection<Piece> getActivePieces();
