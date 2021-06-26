@@ -43,8 +43,7 @@ public class Bishop extends Piece{
                     final Tile candidateDestinationTile = board.getTile(candidateDestinationCoordinate);
                     if(!candidateDestinationTile.isTileOccupied()) {
                         legalMoves.add(new MajorPieceMove(board, this, candidateDestinationCoordinate));
-                    } else {
-                        // If a Bishop is blocked by any piece it cannot consider pieces past it
+                    } else {  // If a Bishop is blocked by any piece it cannot consider pieces past it
                         final Piece pieceAtDestination  = candidateDestinationTile.getPiece();
                         final Alliance pieceAlliance = pieceAtDestination.getPieceAlliance();
                         if (this.pieceAlliance != pieceAlliance) {

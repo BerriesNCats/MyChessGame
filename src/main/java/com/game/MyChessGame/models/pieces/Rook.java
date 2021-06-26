@@ -42,8 +42,7 @@ public class Rook extends Piece{
                     final Tile candidateDestinationTile = board.getTile(candidateDestinationCoordinate);
                     if(!candidateDestinationTile.isTileOccupied()) {
                         legalMoves.add(new MajorPieceMove(board, this, candidateDestinationCoordinate));
-                    } else {
-                        // If a Rook is blocked by any piece it cannot consider pieces past it
+                    } else {  // If a Rook is blocked by any piece it cannot consider pieces past it
                         final Piece pieceAtDestination  = candidateDestinationTile.getPiece();
                         final Alliance pieceAlliance = pieceAtDestination.getPieceAlliance();
                         if (this.pieceAlliance != pieceAlliance) {
@@ -58,10 +57,12 @@ public class Rook extends Piece{
         return ImmutableList.copyOf(legalMoves);
     }
 
+    // If a Rook is on the 1st column it cannot move left
     private static boolean isFirstColumnExclusion(final int currentPosition, final int candidateOffset) {
         return BoardUtils.FIRST_COLUMN[currentPosition] && (candidateOffset == ONE_SPACE_LEFT);
     }
 
+    // If a rook is on the 8th column it cannot move right
     private static boolean isEighthColumnExclusion(final int currentPosition, final int candidateOffset) {
         return BoardUtils.EIGHTH_COLUMN[currentPosition] && (candidateOffset == ONE_SPACE_RIGHT);
     }

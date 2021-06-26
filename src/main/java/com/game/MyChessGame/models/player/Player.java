@@ -5,10 +5,13 @@ import com.game.MyChessGame.models.board.Move;
 import com.game.MyChessGame.models.pieces.Alliance;
 import com.game.MyChessGame.models.pieces.King;
 import com.game.MyChessGame.models.pieces.Piece;
+import com.google.common.collect.ImmutableList;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -17,12 +20,16 @@ public abstract class Player {
     protected Board board;
     protected King playerKing;
     protected Collection<Move> legalMoves;
+    private boolean isInCheck;
 
     Player(Board board, Collection<Move> legalMoves, Collection<Move> opponentMoves) {
         this.board = board;
         this.playerKing = establishKing();
         this.legalMoves = legalMoves;
+        this.isInCheck = !Player.calculateAttacksOnTile(this.playerKing.getPiecePosition(), opponentMoves).isEmpty();
     }
+
+
 
     private King establishKing() {
         for(Piece piece : getActivePieces()) {
@@ -37,17 +44,36 @@ public abstract class Player {
         return this.legalMoves.contains(move);
     }
 
-    // TODO
     public boolean isInCheck() {
-        return false;
+        return this.isInCheck;
+    }
+
+    private static Collection<Move> calculateAttacksOnTile(int piecePosition, Collection<Move> moves) {
+        final List<Move> attackMoves = new ArrayList<>();
+        for (final Move move : moves) {
+            if (piecePosition == move.getDestinationCoordinate()) {
+                attackMoves.add(move);
+            }
+        }
+        return ImmutableList.copyOf(attackMoves);
     }
 
     public boolean isInCheckMate() {
+        return this.isInCheck && !hasEscapeMoves();
+    }
+
+    protected boolean hasEscapeMoves() {
+        for (final Move move : this.legalMoves) {
+            final MoveTransition transition = makeMove(move);
+            if (transition.getMoveStatus().isDone()) {
+                return true;
+            }
+        }
         return false;
     }
 
     public boolean isInStaleMate() {
-        return false;
+        return !this.isInCheck && !hasEscapeMoves();
     }
 
     public boolean isCastled() {

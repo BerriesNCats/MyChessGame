@@ -24,12 +24,9 @@ public abstract class Piece {
         this.pieceAlliance = pieceAlliance;
         this.pieceType = pieceType;
 
-        //TODO
+        //  TODO
         this.isFirstMove = false;
     }
 
-
     public abstract Collection<Move> calculateLegalMoves(final Board board);
-
-
 }
