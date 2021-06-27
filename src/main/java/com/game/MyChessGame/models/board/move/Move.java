@@ -18,6 +18,25 @@ public abstract class Move {
 
     public static Move NULL_MOVE = new NullMove();
 
+    @Override
+    public int hashCode() {
+        int prime = 31;
+        int result = 1;
+        result = prime * result + this.destinationCoordinate;
+        result = prime * result + this.movedPiece.hashCode();
+
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) return true;
+        if (!(other instanceof Move)) return false;
+        Move otherMove = (Move) other;
+        return getDestinationCoordinate() == otherMove.getDestinationCoordinate() &&
+                getMovedPiece().equals(otherMove.getMovedPiece());
+    }
+
     public Board execute() {
         // To make a move, you do not mutate the current board, you construct a new board
         BoardBuilder boardBuilder = new BoardBuilder();
@@ -31,9 +50,8 @@ public abstract class Move {
         for (final Piece piece : this.board.getCurrentPlayer().getOpponent().getActivePieces()) {
             boardBuilder.setPiece(piece);
         }
-        // TODO
         // Move the moved piece
-        boardBuilder.setPiece(null);
+        boardBuilder.setPiece(this.movedPiece.movePiece(this));
         boardBuilder.setNextMoveAlliance(this.board.getCurrentPlayer().getOpponent().getAlliance());
 
         return boardBuilder.build();
@@ -41,5 +59,17 @@ public abstract class Move {
 
     public int getCurrentCoordinate() {
         return this.getMovedPiece().getPiecePosition();
+    }
+
+    public boolean isAttack() {
+        return false;
+    }
+
+    public boolean isCastlingMove() {
+        return false;
+    }
+
+    public Piece getAttackedPiece() {
+        return null;
     }
 }

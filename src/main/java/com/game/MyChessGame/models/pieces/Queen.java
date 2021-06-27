@@ -65,6 +65,11 @@ public class Queen extends Piece{
         return ImmutableList.copyOf(legalMoves);
     }
 
+    @Override
+    public Queen movePiece(Move move) {
+        return new Queen(move.getMovedPiece().getPieceAlliance(), move.getDestinationCoordinate());
+    }
+
     // If a Queen is on the 1st column it cannot move left in any direction
     private static boolean isFirstColumnExclusion(final int currentPosition, final int candidateOffset) {
         return BoardUtils.FIRST_COLUMN[currentPosition] && (candidateOffset == ONE_SPACE_LEFT ||

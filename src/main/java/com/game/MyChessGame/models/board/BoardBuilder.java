@@ -1,6 +1,7 @@
 package com.game.MyChessGame.models.board;
 
 import com.game.MyChessGame.models.pieces.Alliance;
+import com.game.MyChessGame.models.pieces.Pawn;
 import com.game.MyChessGame.models.pieces.Piece;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,6 +14,7 @@ public class BoardBuilder extends Board {
 
     Map<Integer, Piece> boardConfiguration;
     Alliance nextMoveAlliance;
+    Pawn enPassantPawn;
 
     public BoardBuilder() {
         this.boardConfiguration = new HashMap<>();
@@ -31,4 +33,5 @@ public class BoardBuilder extends Board {
     public Board build() {
         return new Board(this);
     }
+
 }

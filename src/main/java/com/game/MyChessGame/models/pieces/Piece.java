@@ -2,6 +2,7 @@ package com.game.MyChessGame.models.pieces;
 
 import com.game.MyChessGame.models.board.Board;
 import com.game.MyChessGame.models.board.move.Move;
+import com.game.MyChessGame.models.board.move.PawnJumpMove;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -53,4 +54,6 @@ public abstract class Piece {
     }
 
     public abstract Collection<Move> calculateLegalMoves(final Board board);
+
+    public abstract Piece movePiece(Move move);
 }

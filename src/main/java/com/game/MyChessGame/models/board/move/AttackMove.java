@@ -20,4 +20,27 @@ public class AttackMove extends Move {
     public Board execute() {
         return null;
     }
+
+    @Override
+    public boolean isAttack() {
+        return true;
+    }
+
+    @Override
+    public Piece getAttackedPiece() {
+        return this.attackedPiece;
+    }
+
+    @Override
+    public int hashCode() {
+        return this.attackedPiece.hashCode() + super.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) return true;
+        if (!(other instanceof AttackMove)) return false;
+        AttackMove otherAttackMove = (AttackMove) other;
+        return super.equals(otherAttackMove) && getAttackedPiece().equals(otherAttackMove.getAttackedPiece());
+    }
 }

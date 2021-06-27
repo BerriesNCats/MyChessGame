@@ -63,6 +63,11 @@ public class King extends Piece{
         return ImmutableList.copyOf(legalMoves);
     }
 
+    @Override
+    public King movePiece(Move move) {
+        return new King(move.getMovedPiece().getPieceAlliance(), move.getDestinationCoordinate());
+    }
+
     // If a King is on the 1st column it cannot move left in any direction
     private static boolean isFirstColumnExclusion(final int currentPosition, final int candidateOffset) {
         return BoardUtils.FIRST_COLUMN[currentPosition] && (candidateOffset == ONE_SPACE_LEFT_DIAGONAL_UP ||

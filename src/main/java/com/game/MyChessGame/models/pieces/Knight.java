@@ -63,6 +63,11 @@ public class Knight extends Piece{
         return ImmutableList.copyOf(legalMoves);
     }
 
+    @Override
+    public Knight movePiece(Move move) {
+        return new Knight(move.getMovedPiece().getPieceAlliance(), move.getDestinationCoordinate());
+    }
+
     // If a Knight is on the 1st column it cannot jump or move left
     private static boolean isFirstColumnExclusion(final int currentPosition, final int candidateOffset) {
         return BoardUtils.FIRST_COLUMN[currentPosition] &&
