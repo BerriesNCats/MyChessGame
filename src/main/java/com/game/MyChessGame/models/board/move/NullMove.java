@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class NullMove extends Move {
 
-    public NullMove(Board board, Piece movedPiece, int destinationCoordinate) {
+    public NullMove(final Board board, final Piece movedPiece, final int destinationCoordinate) {
         super(null, null, -1);
     }
 
