@@ -25,6 +25,12 @@ public class Pawn extends Piece{
             ONE_SPACE_FORWARD, TWO_SPACES_FORWARD, ATTACK_LEFT, ATTACK_RIGHT
     };
 
+    /**
+     * To construct a pawn, send in the pawns alliance and the pawns tile coordinate on the board.
+     *
+     * @param pieceAlliance the alliance of the pawn
+     * @param piecePosition the tile coordinate the pawn is placed on
+     */
     public Pawn(final Alliance pieceAlliance, final int piecePosition) {
         super(pieceAlliance, piecePosition, PieceType.PAWN);
     }

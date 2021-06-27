@@ -26,6 +26,12 @@ public class Bishop extends Piece{
             ONE_SPACE_RIGHT_DIAGONAL_DOWN, ONE_SPACE_LEFT_DIAGONAL_UP
     };
 
+    /**
+     * To construct a bishop, send in the bishops alliance and the bishops tile coordinate on the board.
+     *
+     * @param pieceAlliance the alliance of the bishop
+     * @param piecePosition the tile coordinate the bishop is placed on
+     */
     public Bishop(final Alliance pieceAlliance, final int piecePosition) {
         super(pieceAlliance, piecePosition, PieceType.BISHOP);
     }

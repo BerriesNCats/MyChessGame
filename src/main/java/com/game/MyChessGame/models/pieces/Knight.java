@@ -30,6 +30,12 @@ public class Knight extends Piece{
             JUMP_LEFT_ONE_SPACE_DOWN, JUMP_RIGHT_ONE_SPACE_DOWN, JUMP_DOWN_ONE_SPACE_LEFT, JUMP_DOWN_ONE_SPACE_RIGHT
     };
 
+    /**
+     * To construct a knight, send in the knights alliance and the knightss tile coordinate on the board.
+     *
+     * @param pieceAlliance the alliance of the knight
+     * @param piecePosition the tile coordinate the knight is placed on
+     */
     public Knight(final Alliance pieceAlliance, final int piecePosition) {
         super(pieceAlliance, piecePosition, PieceType.KNIGHT);
     }

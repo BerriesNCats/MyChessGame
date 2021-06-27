@@ -30,6 +30,12 @@ public class Queen extends Piece{
             ONE_SPACE_RIGHT_DIAGONAL_UP, ONE_SPACE_RIGHT_DIAGONAL_DOWN, ONE_SPACE_LEFT_DIAGONAL_UP
     };
 
+    /**
+     * To construct a queen, send in the queens alliance and the queens tile coordinate on the board.
+     *
+     * @param pieceAlliance the alliance of the queen
+     * @param piecePosition the tile coordinate the queen is placed on
+     */
     public Queen(final Alliance pieceAlliance, final int piecePosition) {
         super(pieceAlliance, piecePosition, PieceType.QUEEN);
     }

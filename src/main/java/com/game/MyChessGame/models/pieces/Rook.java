@@ -25,6 +25,12 @@ public class Rook extends Piece{
             ONE_SPACE_DOWN, ONE_SPACE_UP, ONE_SPACE_LEFT, ONE_SPACE_RIGHT
     };
 
+    /**
+     * To construct a rook, send in the rooks alliance and the rooks tile coordinate on the board.
+     *
+     * @param pieceAlliance the alliance of the rook
+     * @param piecePosition the tile coordinate the rook is placed on
+     */
     public Rook(final Alliance pieceAlliance, final int piecePosition) {
         super(pieceAlliance, piecePosition, PieceType.ROOK);
     }

@@ -9,7 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PawnEnPassantAttackMove extends PawnAttackMove{
 
-    public PawnEnPassantAttackMove(Board board, Piece movedPiece, int destinationCoordinate, Piece attackPiece) {
+    public PawnEnPassantAttackMove(final Board board, final Piece movedPiece, final int destinationCoordinate,
+                                   final Piece attackPiece) {
         super(board, movedPiece, destinationCoordinate, attackPiece);
     }
 

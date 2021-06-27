@@ -30,6 +30,12 @@ public class King extends Piece{
             ONE_SPACE_RIGHT_DIAGONAL_UP, ONE_SPACE_RIGHT_DIAGONAL_DOWN, ONE_SPACE_LEFT_DIAGONAL_UP
     };
 
+    /**
+     * To construct a king, send in the kings alliance and the kings tile coordinate on the board.
+     *
+     * @param pieceAlliance the alliance of the king
+     * @param piecePosition the tile coordinate the king is placed on
+     */
     public King(final Alliance pieceAlliance, final int piecePosition) {
         super(pieceAlliance, piecePosition, PieceType.KING);
     }
