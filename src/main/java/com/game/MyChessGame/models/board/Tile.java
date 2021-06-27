@@ -2,7 +2,6 @@ package com.game.MyChessGame.models.board;
 
 import com.game.MyChessGame.models.pieces.Piece;
 import com.google.common.collect.ImmutableMap;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -15,7 +14,7 @@ public abstract class Tile {
 
     protected int tileCoordinate;
 
-    protected Tile(int tileCoordinate) {
+    protected Tile(final int tileCoordinate) {
         this.tileCoordinate = tileCoordinate;
     }
 

@@ -50,16 +50,16 @@ public class Pawn extends Piece{
                 // TODO FIX
                 legalMoves.add(new MajorPieceMove(board, this, candidateDestinationCoordinate));
             } else if(currentCandidateDestinationOffset == TWO_SPACES_FORWARD && this.isFirstMove() &&
-                    (BoardUtils.SECOND_ROW[this.piecePosition] && this.getPieceAlliance().isBlack()) ||
-                    (BoardUtils.SEVENTH_ROW[this.piecePosition] && this.getPieceAlliance().isWhite())) {
+                    (BoardUtils.SEVENTH_RANK[this.piecePosition] && this.getPieceAlliance().isBlack()) ||
+                    (BoardUtils.SECOND_RANK[this.piecePosition] && this.getPieceAlliance().isWhite())) {
                 final int behindCandidateDestinationCoordinate = this.piecePosition +
                         (this.pieceAlliance.getDirection() * ONE_SPACE_FORWARD);
                 if(!board.getTile(behindCandidateDestinationCoordinate).isTileOccupied() &&
                         !board.getTile(candidateDestinationCoordinate).isTileOccupied()) {
                     legalMoves.add(new MajorPieceMove(board, this, candidateDestinationCoordinate));
                 } else if(currentCandidateDestinationOffset == ATTACK_LEFT &&
-                        !((BoardUtils.EIGHTH_COLUMN[this.piecePosition] && this.pieceAlliance.isWhite() ||
-                        (BoardUtils.FIRST_COLUMN[this.piecePosition] && this.pieceAlliance.isBlack())))) {
+                        !((BoardUtils.H_FILE[this.piecePosition] && this.pieceAlliance.isWhite() ||
+                        (BoardUtils.A_FILE[this.piecePosition] && this.pieceAlliance.isBlack())))) {
                     if(board.getTile(candidateDestinationCoordinate).isTileOccupied()) {
                         final Piece pieceOnCandidate = board.getTile(candidateDestinationCoordinate).getPiece();
                         if(this.pieceAlliance != pieceOnCandidate.getPieceAlliance()) {
@@ -68,8 +68,8 @@ public class Pawn extends Piece{
                         }
                     }
                 } else if(currentCandidateDestinationOffset == ATTACK_RIGHT &&
-                        !((BoardUtils.FIRST_COLUMN[this.piecePosition] && this.pieceAlliance.isWhite() ||
-                        (BoardUtils.EIGHTH_COLUMN[this.piecePosition] && this.pieceAlliance.isBlack())))) {
+                        !((BoardUtils.A_FILE[this.piecePosition] && this.pieceAlliance.isWhite() ||
+                        (BoardUtils.H_FILE[this.piecePosition] && this.pieceAlliance.isBlack())))) {
                     if(board.getTile(candidateDestinationCoordinate).isTileOccupied()) {
                         final Piece pieceOnCandidate = board.getTile(candidateDestinationCoordinate).getPiece();
                         if(this.pieceAlliance != pieceOnCandidate.getPieceAlliance()) {

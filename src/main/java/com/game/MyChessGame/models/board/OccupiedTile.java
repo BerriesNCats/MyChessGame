@@ -12,7 +12,14 @@ class OccupiedTile extends Tile {
 
     private Piece pieceOnTile;
 
-    OccupiedTile(int tileCoordinate, Piece pieceOnTile) {
+    /**
+     * To construct an Occupied Tile, send in the coordinate at which the occupied tile is located and the piece that
+     * resides on that tile.
+     *
+     * @param tileCoordinate the coordinate of the occupied tile on the board
+     * @param pieceOnTile the piece on the occupied tile
+     */
+    public OccupiedTile(final int tileCoordinate, final Piece pieceOnTile) {
         super(tileCoordinate);
         this.pieceOnTile = pieceOnTile;
     }

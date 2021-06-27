@@ -73,12 +73,12 @@ public class Rook extends Piece{
 
     // If a Rook is on the 1st column it cannot move left
     private static boolean isFirstColumnExclusion(final int currentPosition, final int candidateOffset) {
-        return BoardUtils.FIRST_COLUMN[currentPosition] && (candidateOffset == ONE_SPACE_LEFT);
+        return BoardUtils.A_FILE[currentPosition] && (candidateOffset == ONE_SPACE_LEFT);
     }
 
     // If a rook is on the 8th column it cannot move right
     private static boolean isEighthColumnExclusion(final int currentPosition, final int candidateOffset) {
-        return BoardUtils.EIGHTH_COLUMN[currentPosition] && (candidateOffset == ONE_SPACE_RIGHT);
+        return BoardUtils.H_FILE[currentPosition] && (candidateOffset == ONE_SPACE_RIGHT);
     }
 
     @Override

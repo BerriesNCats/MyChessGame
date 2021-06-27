@@ -7,14 +7,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
 
+import java.io.IOException;
+
 @SpringBootApplication
 public class MyChessGameApplication {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 //		SpringApplication.run(MyChessGameApplication.class, args);
-		SpringApplicationBuilder builder = new SpringApplicationBuilder(MyChessGameApplication.class);
-		builder.headless(false);
-		ConfigurableApplicationContext context = builder.run(args);
+		SpringApplicationBuilder springApplicationBuilder = new SpringApplicationBuilder(MyChessGameApplication.class);
+		springApplicationBuilder.headless(false);
+		ConfigurableApplicationContext context = springApplicationBuilder.run(args);
 
 		Board board = Board.createStandardBoard();
 

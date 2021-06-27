@@ -11,7 +11,17 @@ public class AttackMove extends Move {
 
     private Piece attackedPiece;
 
-    public AttackMove(Board board, Piece movedPiece, int destinationCoordinate, Piece attackedPiece) {
+    /**
+     * To construct an Attack Move, send in the current board, the attacking piece being moved, the tile coordinate
+     * the attacking piece intends to move to and the piece that resides on the destination coordinate being attacked.
+     *
+     * @param board the game board
+     * @param movedPiece the attacking piece being moved
+     * @param destinationCoordinate the coordinate of the tile the attacking piece is moving to
+     * @param attackedPiece the piece on the board being attacked
+     */
+    public AttackMove(final Board board, final Piece movedPiece, final int destinationCoordinate,
+                      final Piece attackedPiece) {
         super(board, movedPiece, destinationCoordinate);
         this.attackedPiece = attackedPiece;
     }

@@ -26,6 +26,14 @@ public class Board {
     private BlackPlayer blackPlayer;
     private Player currentPlayer;
 
+    /**
+     * To construct a board, use the builder class designated for constructing game boards and responsible for creating
+     * a list of tiles representing the board, placing and keeping track of the white and black pieces, keeping track
+     * of the white and black player as well as which of the players is the current player whose turn it is to make a
+     * move.
+     *
+     * @param boardBuilder the builder object of the board
+     */
     Board(BoardBuilder boardBuilder) {
         this.gameBoard = createGameBoard(boardBuilder);
         this.whitePieces = calculateActivePieces(this.gameBoard, Alliance.WHITE);

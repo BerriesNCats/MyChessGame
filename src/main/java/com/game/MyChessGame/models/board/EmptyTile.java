@@ -8,8 +8,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public final class EmptyTile extends Tile {
 
-
-    EmptyTile(int tileCoordinate) { super(tileCoordinate); }
+    /**
+     * To construct an Empty Tile, send in the coordinate at which the empty tile is located.
+     *
+     * @param tileCoordinate the coordinate of the empty tile on the board
+     */
+    public EmptyTile(final int tileCoordinate) { super(tileCoordinate); }
 
     @Override
     public boolean isTileOccupied() {

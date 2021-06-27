@@ -76,26 +76,26 @@ public class Knight extends Piece{
 
     // If a Knight is on the 1st column it cannot jump or move left
     private static boolean isFirstColumnExclusion(final int currentPosition, final int candidateOffset) {
-        return BoardUtils.FIRST_COLUMN[currentPosition] &&
+        return BoardUtils.A_FILE[currentPosition] &&
                 (candidateOffset == JUMP_UP_ONE_SPACE_LEFT || candidateOffset == JUMP_LEFT_ONE_SPACE_UP ||
                 candidateOffset == JUMP_LEFT_ONE_SPACE_DOWN || candidateOffset == JUMP_DOWN_ONE_SPACE_LEFT);
     }
 
     // If a Knight is on the 2nd column it cannot jump left
     private static boolean isSecondColumnExclusion(final int currentPosition, final int candidateOffset) {
-        return BoardUtils.SECOND_COLUMN[currentPosition] && (candidateOffset == JUMP_LEFT_ONE_SPACE_UP ||
+        return BoardUtils.B_FILE[currentPosition] && (candidateOffset == JUMP_LEFT_ONE_SPACE_UP ||
                 candidateOffset == JUMP_LEFT_ONE_SPACE_DOWN);
     }
 
     // If a Knight is on the 7th column it cannot jump right
     private static boolean isSeventhColumnExclusion(final int currentPosition, final int candidateOffset) {
-        return BoardUtils.SEVENTH_COLUMN[currentPosition] && (candidateOffset == JUMP_RIGHT_ONE_SPACE_UP ||
+        return BoardUtils.G_FILE[currentPosition] && (candidateOffset == JUMP_RIGHT_ONE_SPACE_UP ||
                 candidateOffset == JUMP_RIGHT_ONE_SPACE_DOWN);
     }
 
     // If a Knight is on the 8th column it cannot jump or move right
     private static boolean isEighthColumnExclusion(final int currentPosition, final int candidateOffset) {
-        return BoardUtils.EIGHTH_COLUMN[currentPosition] && (candidateOffset == JUMP_UP_ONE_SPACE_RIGHT ||
+        return BoardUtils.H_FILE[currentPosition] && (candidateOffset == JUMP_UP_ONE_SPACE_RIGHT ||
                 candidateOffset == JUMP_RIGHT_ONE_SPACE_UP || candidateOffset == JUMP_RIGHT_ONE_SPACE_DOWN ||
                 candidateOffset == JUMP_DOWN_ONE_SPACE_RIGHT);
     }
