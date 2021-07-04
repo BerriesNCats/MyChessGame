@@ -1,6 +1,9 @@
 package com.game.MyChessGame.models.gui;
 
 import com.game.MyChessGame.models.board.Board;
+import com.game.MyChessGame.models.board.Tile;
+import com.game.MyChessGame.models.pieces.Piece;
+import lombok.Data;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,20 +11,24 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+@Data
 public class Table {
 
     private JFrame gameFrame;
     private BoardPanel boardPanel;
     protected static Board chessBoard;
-    protected static String defaultPieceImagePath = "art/holywarriors/";
+    protected Tile originTile;
+    protected Tile destinationTile;
+    protected Piece movedPiece;
+
 
     private static Dimension OUTER_FRAME_DIMENSION = new Dimension(600, 600);
     protected static final Dimension BOARD_PANEL_DIMENSION = new Dimension(400, 350);
     protected static final Dimension TILE_PANEL_DIMENSION = new Dimension(10, 10);
+    protected static String defaultPieceImagePath = "art/holywarriors/";
 
     protected static Color lightTileColor = Color.decode("#FFFACD");
     protected static Color darkTileColor = Color.decode("#593E1A");
-
 
 
     public Table() throws IOException {
@@ -31,7 +38,7 @@ public class Table {
         this.gameFrame.setJMenuBar(tableMenuBar);
         this.gameFrame.setSize(OUTER_FRAME_DIMENSION);
         this.chessBoard = Board.createStandardBoard();
-        this.boardPanel = new BoardPanel();
+        this.boardPanel = new BoardPanel(this);
         this.gameFrame.add(this.boardPanel, BorderLayout.CENTER);
         this.gameFrame.setVisible(true);
     }

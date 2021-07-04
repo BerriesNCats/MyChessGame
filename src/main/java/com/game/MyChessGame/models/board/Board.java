@@ -152,4 +152,6 @@ public class Board {
         return Iterables.unmodifiableIterable(Iterables.concat
                 (this.whitePlayer.getPlayersLegalMoves(), this.blackPlayer.getPlayersLegalMoves()));
     }
+
+
 }
